@@ -32,14 +32,15 @@ st.write("A/B Test Results:")
 st.write(f"T-Statistic: {t_stat:.4f}, P-Value: {p_val:.4f}")
 
 if p_val < 0.05:
-    st.success("✅ Significant difference in conversion rates between platforms.")
+    st.success("Significant difference in conversion rates between platforms.")
 else:
-    st.warning("❌ No significant difference found.")
+    st.warning("No significant difference found.")
 
 # Visualizations
+plot_df = df[['platform', 'conversion_rate']].dropna()
+
 fig, ax = plt.subplots()
-sns.boxplot(data=[facebook['conversion_rate'], google['conversion_rate']], ax=ax)
-ax.set_xticklabels(['Facebook', 'Google'])
+sns.boxplot(x='platform', y='conversion_rate', data=plot_df, ax=ax)
 ax.set_title('Conversion Rate Comparison')
 st.pyplot(fig)
 
@@ -97,7 +98,7 @@ else:
     # Button to generate the report
     if st.button("Generate PDF Report"):
         create_pdf()
-        st.success("✅ Report generated successfully! Download it below.")
+        st.success("Report generated successfully! Download it below.")
         with open("ab_testing_report.pdf", "rb") as f:
             st.download_button("Download PDF", f, file_name="ab_testing_report.pdf")
 
@@ -121,6 +122,6 @@ else:
     # Button to generate the HTML report
     if st.button("Generate HTML Report"):
         create_html_report()
-        st.success("✅ HTML report generated successfully! Download it below.")
+        st.success("HTML report generated successfully! Download it below.")
         with open("ab_testing_report.html", "rb") as f:
             st.download_button("Download HTML", f, file_name="ab_testing_report.html")
