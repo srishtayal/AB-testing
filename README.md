@@ -16,7 +16,7 @@ A Streamlit web app for analyzing and visualizing A/B test results from advertis
 
 ## Demo
 
-!https://ab-tester.streamlit.app/
+https://ab-tester.streamlit.app/
 
 ---
 
